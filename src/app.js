@@ -9,7 +9,25 @@ dotenv.config();
 const app = express();
 
 // ✅ Middleware
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:5173', // 🧑‍💻 your local React dev server
+  'https://movieexplorer-frontend.onrender.com' // 🌐 your deployed frontend URL (update this!)
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}));
+
 app.use(express.json());
 
 // ✅ API routes (place BEFORE serving React build)
