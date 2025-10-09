@@ -11,7 +11,8 @@ const app = express();
 //  Middleware
 const allowedOrigins = [
   'http://localhost:5173', // local dev
-  'https://movie-explorer-frontend-fiq34lo4s-thilinadilshans-projects.vercel.app' // Vercel frontend
+  //'https://movie-explorer-frontend-fiq34lo4s-thilinadilshans-projects.vercel.app'
+  'https://movie-explorer-frontend.vercel.app/'// Vercel frontend
 ];
 
 app.use(cors({
