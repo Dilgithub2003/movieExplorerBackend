@@ -9,11 +9,18 @@ dotenv.config();
 const app = express();
 
 //  Middleware
+// const allowedOrigins = [
+//   'http://localhost:5173', // local dev
+//   //'https://movie-explorer-frontend-fiq34lo4s-thilinadilshans-projects.vercel.app'
+//   'https://movie-explorer-frontend.vercel.app/'// Vercel frontend
+// ];
+
 const allowedOrigins = [
-  'http://localhost:5173', // local dev
-  //'https://movie-explorer-frontend-fiq34lo4s-thilinadilshans-projects.vercel.app'
-  'https://movie-explorer-frontend.vercel.app/'// Vercel frontend
+  'http://localhost:5173',
+  'https://movie-explorer-frontend.vercel.app' // ✅ no trailing slash
 ];
+
+
 
 app.use(cors({
   origin: function (origin, callback) {
